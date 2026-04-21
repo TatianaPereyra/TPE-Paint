@@ -9,10 +9,6 @@ export class Pen extends Tool{
         this.color = color;
     }
 
-    //----------------------------------------
-    //          DIBUJO SOBRE EL CANVAS
-    //---------------------------------------
-
     //Cada que comienzo un trazo, establezco el estilo de la linea
     startDraw(ctx, x, y){
         ctx.globalCompositeOperation = "source-over"; 

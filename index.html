@@ -8,14 +8,18 @@
 <body>
     <div>
         <header>
-            <nav>
-                <button id="pen">Lapiz</button>
-                <button id="eraser">Goma</button>
-                <button id="cleanAll">Limpiar lienzo</button>
-            </nav>
+            <button id="pen">Lapiz</button>
+            <button id="eraser">Goma</button>
+            <button id="cleanAll">Limpiar lienzo</button>
+            <div>
+                <label>Seleccione una Imagen</label>
+                <input type="file" accept="image/*" id="image">
+                <button id="cargar">Cargar</button>
+            </div>
         </header>
+        <div id="adicional">
+        </div>
     </div>
-
     <div>
         <canvas id="canvas" width="1000" height="700"> </canvas>
     </div>

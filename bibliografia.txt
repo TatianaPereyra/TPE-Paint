@@ -1,0 +1,8 @@
+Bibliografia consultada:
+Kernel(Image processing), wikipedia, 5 de octubre 2025 (last modification): 
+https://en.wikipedia.org/wiki/Kernel_(image_processing)
+
+https://en.wikipedia.org/wiki/Colorfulness
+
+https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/feColorMatrix
+

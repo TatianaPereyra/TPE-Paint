@@ -5,6 +5,7 @@ import { SepiaFilter } from "../filters/SimpleFilter/SepiaFilter.js";
 import { NegativoFilter } from "../filters/SimpleFilter/NegativoFilter.js";
 import { BinarioFilter } from "../filters/SimpleFilter/BinarioFilter.js";
 import { Filter } from "../filters/Filter.js";
+import { BlurFilter } from "../filters/ComplexFilter/BlurFilter.js";
 
 export class ImageController{
     /** 
@@ -62,7 +63,8 @@ export class ImageController{
             { value: "sepia", texto: "Sepia" },
             { value: "brillo", texto: "Brillo" },
             { value: "negativo", texto: "Negativo" },
-            { value: "binario", texto: "Blanco y negro" }
+            { value: "binario", texto: "Blanco y negro" },
+            { value: "blur", texto: "Blur" }
         ];
 
         opciones.forEach(op => {
@@ -116,7 +118,7 @@ export class ImageController{
 
 
      /** 
-     * @param {string} tipo - Nombre del filtro a aplicar (grises, sepia, brillo, negativo, binario)
+     * @param {string} tipo - Nombre del filtro a aplicar.
      * 
      * @description
      * Instancia el filtro correspondiente, lo aplica sobre la copia del ImageData,
@@ -131,6 +133,7 @@ export class ImageController{
             case "brillo": filtro = new BrilloFilter();break;
             case "negativo": filtro = new NegativoFilter();break;
             case "binario": filtro = new BinarioFilter();break;
+            case "blur": filtro = new BlurFilter();break;
             default: break;
         }
 

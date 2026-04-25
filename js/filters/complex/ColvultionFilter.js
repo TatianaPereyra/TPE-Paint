@@ -1,21 +1,17 @@
 import { Filter } from "../Filter.js";
 
-export class BlurFilter extends Filter{
+export class ConvultionFilter extends Filter{
      /** 
      * @description
      * Inicializa el filtro con el valor del kernel y datos asociados que se utilizaran
      * para el filtro.
      */
-    constructor(){
-        super()
-        this.kernel = [ 1, 1, 1, 1, 1,
-                        1, 1, 1, 1, 1,
-                        1, 1, 1, 1, 1,
-                        1, 1, 1, 1, 1,
-                        1, 1, 1, 1, 1];
-        this.kernelWidth = 5;
-        this.kernelHeight = 5;
-        this.factor = 25; 
+    constructor(kernel, factor, width, height){
+        super();
+        this.kernel = kernel;
+        this.factor = factor; 
+        this.kernelWidth = width;
+        this.kernelHeight = height;
     }
 
      /** 
@@ -25,7 +21,9 @@ export class BlurFilter extends Filter{
      * Toma el data del ImageData, el alto y ancho y crea una copia. Recorre el arreglo original en alto y ancho y va 
      * calculando el índice de los píxeles. Luego, por cada píxel, recorre el kernel realizando la multiplicación
      * con los valores de los "vecinos" para obtener los nuevos RGB. Cuando termina de recorrer el kernel,
-     * asigna los valores promediados a la copia del arreglo. Finalmente, retorna un nuevo ImageData con el resultado.
+     * asigna los valores promediados a la copia del arreglo. 
+     * 
+     * @returns {Array} - nuevo ImageData modificado.
      */
     aplicar(imageData){
     

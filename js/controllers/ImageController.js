@@ -1,15 +1,20 @@
 import { cleanCanvas } from "../Main.js";
-import { BrilloFilter } from "../filters/SimpleFilter/BilloFilter.js";
-import { GrisFilter } from "../filters/SimpleFilter/GrisFilter.js";
-import { SepiaFilter } from "../filters/SimpleFilter/SepiaFilter.js";
-import { NegativoFilter } from "../filters/SimpleFilter/NegativoFilter.js";
-import { BinarioFilter } from "../filters/SimpleFilter/BinarioFilter.js";
+import { BrilloFilter } from "../filters/simple/BrilloFilter.js";
+import { GrisFilter } from "../filters/simple/GrisFilter.js";
+import { SepiaFilter } from "../filters/simple/SepiaFilter.js";
+import { NegativoFilter } from "../filters/simple/NegativoFilter.js";
+import { BinarioFilter } from "../filters/simple/BinarioFilter.js";
 import { Filter } from "../filters/Filter.js";
-import { BlurFilter } from "../filters/ComplexFilter/BlurFilter.js";
+import { kernels } from "../filters/kernels.js";
+import { ConvultionFilter } from "../filters/complex/ColvultionFilter.js";
+import { SaturationFilter } from "../filters/complex/SaturationFilter.js";
 
 export class ImageController{
     /** 
-     * @param {Object} ctx - Contexto del canvas (CanvasRenderingContext2D)
+     * @param {Object} ctx - Contexto del canvas (CanvasRenderingContext2D).
+     * 
+     * @description
+     * Inicializa el controller y atributos de clase. Asigna el ctx y crea una nueva instancia de Imagen para utilizar.
      */
     constructor(ctx){
         this.ctx = ctx;
@@ -64,7 +69,12 @@ export class ImageController{
             { value: "brillo", texto: "Brillo" },
             { value: "negativo", texto: "Negativo" },
             { value: "binario", texto: "Blanco y negro" },
-            { value: "blur", texto: "Blur" }
+            { value: "blur", texto: "Blur" },
+            { value: "saturation", texto: "Saturacion" },
+            { value: "borderD", texto: "Deteccion de bordes" },
+            { value: "sharpen", texto: "Nitidez" },
+            { value: "relieve", texto: "Bajorrelieve" }
+
         ];
 
         opciones.forEach(op => {
@@ -133,7 +143,15 @@ export class ImageController{
             case "brillo": filtro = new BrilloFilter();break;
             case "negativo": filtro = new NegativoFilter();break;
             case "binario": filtro = new BinarioFilter();break;
-            case "blur": filtro = new BlurFilter();break;
+            case "blur": filtro = new ConvultionFilter(kernels.blur.matriz, kernels.blur.factor,
+                                                       kernels.blur.width, kernels.blur.height);break;
+            case "saturation": filtro = new SaturationFilter;break;
+            case "borderD": filtro = new ConvultionFilter(kernels.bordes.matriz, kernels.bordes.factor,
+                                                          kernels.bordes.width, kernels.bordes.height);break;
+            case "sharpen": filtro = new ConvultionFilter(kernels.sharpen.matriz, kernels.sharpen.factor,
+                                                          kernels.sharpen.width, kernels.sharpen.height);break;
+            case "relieve": filtro = new ConvultionFilter(kernels.relieve.matriz, kernels.relieve.factor,
+                                                          kernels.relieve.width, kernels.relieve.height);break;
             default: break;
         }
 

@@ -4,24 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TPE 2: paint</title>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
-    <div>
-        <header>
-            <button id="pen">Lapiz</button>
-            <button id="eraser">Goma</button>
-            <button id="cleanAll">Limpiar lienzo</button>
-            <div>
-                <label>Seleccione una Imagen</label>
-                <input type="file" accept="image/*" id="image">
-                <button id="cargar">Cargar</button>
-            </div>
-        </header>
-        <div id="adicional">
+
+    <div id="main">
+
+        <div id="filters">
+                <button class="btn" id="original">Original</button>
+                <button class="btn" id="grises">Escala de Grises</button>
+                <button class="btn" id="sepia"">Sepia</button>
+                <button class="btn" id="brillo">Brillo</button>
+                <button class="btn" id="negativo">Negativo</button>
+                <button class="btn" id="blur">Blur</button>
+                <button class="btn" id="saturacion">Saturacion</button>
+                <button class="btn" id="borderD">Deteccion de Bordes</button>
+                <button class="btn" id="sharpen">Sharpen</button>
+                <button class="btn" id="relieve">Bajorrelieve</button>  
+                
+                <div id="adicional"> </div>
+                
         </div>
-    </div>
-    <div>
-        <canvas id="canvas" width="1000" height="700"> </canvas>
+
+        <div id="canvas-container">
+            <canvas id="canvas" width="800" height="600"> </canvas>
+        </div>
+
+        <div id="herramientas">
+            <button id="pen" class="btn">
+                <img src="img/lapiz.png" alt="pen" class="img-tools">
+            </button>
+
+            <button id="eraser" class="btn">
+                <img src="img/eraser.png" alt="eraser" class="img-tools">
+            </button>
+        
+            <button class="btn" id="load">
+                <img src="img/subir.png" alt="subir" class="img-tools">
+                Subir Foto
+            </button>
+
+            <input type="file" accept="image/*" id="fileInput">
+
+            <button class="btn" id="download">
+                <img src="img/descargar.png" alt="descargar" class="img-tools">
+                Descargar
+            </button>
+
+            <button id="clean">Limpiar Lienzo</button>
+        
+        </div>
+        
     </div>
     
     <script type="module" src="js/Main.js"></script>

@@ -21,6 +21,7 @@ export class ImageController{
         this.image = new Image();
         this.originalImageData = null;
         this.copiaImageData = null; //modifico la copia
+        this.waitButton();
     }
 
     //--------------------------------------------------------------
@@ -44,56 +45,38 @@ export class ImageController{
             this.ctx.drawImage(this.image, 0, 0);
             this.originalImageData = this.ctx.getImageData(0,0, this.image.width, this.image.height);
             this.setCopiaImageData();
-            this.putButtons();
         }
     }
 
-     /** 
-     * @description
-     * Crea dinámicamente un selector de filtros (select) y un botón "Aplicar".
-     * Se ejecuta automáticamente al cargar una imagen.
-     */
-    putButtons(){ 
-        let div = document.querySelector("#adicional");
-
-        div.innerHTML = '';
-        
-        //Genero la estructyura de select-option para los filtros
-        const select = document.createElement("select");
-        select.id = "filtroSelect";
-
-        let opciones = [
-            { value: "ninguno", texto: "Sin filtro" },
-            { value: "grises", texto: "Escala de grises" },
-            { value: "sepia", texto: "Sepia" },
-            { value: "brillo", texto: "Brillo" },
-            { value: "negativo", texto: "Negativo" },
-            { value: "binario", texto: "Blanco y negro" },
-            { value: "blur", texto: "Blur" },
-            { value: "saturation", texto: "Saturacion" },
-            { value: "borderD", texto: "Deteccion de bordes" },
-            { value: "sharpen", texto: "Nitidez" },
-            { value: "relieve", texto: "Bajorrelieve" }
-
-        ];
-
-        opciones.forEach(op => {
-            let option = document.createElement("option");
-            option.value = op.value;
-            option.textContent = op.texto;
-            select.appendChild(option);
-        });
-        
-        let boton = document.createElement("button");
-        boton.textContent = "Aplicar filtro";
-        boton.id = "aplicarFiltro";
-        
-        div.appendChild(select);
-        div.appendChild(boton);
-
-        this.waitButton();
+    limpiarControles(){
+        document.querySelector("#adicional").innerHTML = "";
     }
 
+    crearControles(){
+        let contenedor = document.querySelector("#adicional");
+        contenedor.innerHTML = `
+            <div id="control-brillo">
+                <button id="menos">-</button>
+                <span id="valorBrillo">0</span>
+                <button id="mas">+</button>
+            </div>
+            `;
+    }
+
+    verificarImagen(){
+        //si no hay imagen cargada lanza error y corta
+        if(this.originalImageData === null){
+            document.querySelector("#adicional").innerHTML = `<h1>No hay una imagen subida</h1>` ;
+
+            setTimeout(() => {
+                mensaje.innerHTML = "";
+            }, 2000);
+
+            return false;  
+        }
+        
+        return true;
+    }
 
     //----------------------------------------------------------------
     //                 APLICACION DE FILTROS
@@ -101,18 +84,69 @@ export class ImageController{
 
      /** 
      * @description
-     * Escucha el clic en el botón "Aplicar filtro", obtiene el filtro seleccionado
+     * Escucha el clic en el botón del filtro, obtiene el filtro seleccionado
      * y ejecuta aplicarFiltro() con ese valor.
      */
     waitButton(){
-        let select = document.querySelector("#filtroSelect");
-        let boton = document.querySelector("#aplicarFiltro");
-    
-        boton.addEventListener('click', () => {
-            let filtroSeleccionado = select.value;
-            this.aplicarFiltro(filtroSeleccionado);
+        //sin filtro --> muestro la imagen original
+        document.querySelector("#original").addEventListener('click', (e) => {
+            this.limpiarControles();
+            this.ctx.putImageData(this.originalImageData, 0, 0);
         });
-    }   
+    
+        //escala de grises
+        document.querySelector("#grises").addEventListener('click', (e) => {
+            this.limpiarControles();
+            this.aplicarFiltro("grises");
+        });
+
+         //sepia
+        document.querySelector("#sepia").addEventListener('click', (e) => {
+            this.limpiarControles();
+            this.aplicarFiltro("sepia");
+        });
+        
+        //filtro de brillo, creo los controles necesarios
+        document.querySelector("#brillo").addEventListener("click", () => {
+            this.crearControles();
+        });
+
+        //negativo
+        document.querySelector("#negativo").addEventListener('click', (e) => {
+            this.limpiarControles();
+            this.aplicarFiltro("negativo");
+        });
+
+        //blur
+        document.querySelector("#blur").addEventListener('click', (e) => {
+            this.limpiarControles();
+            this.aplicarFiltro("blur");
+        });
+
+        //saturacion
+        document.querySelector("#saturacion").addEventListener('click', (e) =>{
+           this.crearControles();
+        });
+
+        //deteccion de bordes
+        document.querySelector("#borderD").addEventListener('click', (e) =>{
+            this.limpiarControles();
+            this.aplicarFiltro("borderD");
+        });
+
+        //sharpen
+        document.querySelector("#sharpen").addEventListener('click', (e) =>{
+            this.limpiarControles();
+            this.aplicarFiltro("sharpen");
+        });
+
+        //relieve
+        document.querySelector("#relieve").addEventListener('click', (e) =>{
+            this.limpiarControles();
+            this.aplicarFiltro("relieve");
+        })
+    
+    }
 
      /** 
      * @description

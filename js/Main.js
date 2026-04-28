@@ -23,7 +23,7 @@ let imageController = new ImageController(ctx);
 
 function drawCanvas(){
     ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, 1000, 700);
+    ctx.fillRect(0, 0, 800, 600);
 }
 
 export function cleanCanvas(){
@@ -49,20 +49,22 @@ document.querySelector("#eraser").addEventListener('click', (e) => {
     toolController.setTool(new Eraser());
 });
 
-document.querySelector("#cleanAll").addEventListener('click', cleanCanvas);
+document.querySelector("#clean").addEventListener('click', cleanCanvas);
 
-document.querySelector("#cargar").addEventListener('click', (e) =>{
-    const input = document.querySelector("#image"); //obtengo el input y lo paso al controlador
 
-    if(!input.files || input.files.length === 0){  //compruebo que no dejen vacio el input
-        let mensaje = document.querySelector("#adicional");
-        mensaje.innerHTML = '<h2>No hay ninuguna imagen seleccionada</h2>'
-        setTimeout(() => {
-            mensaje.innerHTML = '';
-        }, 2000);
-    }else{
-        imageController.loadImage(input.files[0]);
-        input.value = '';
-    }
+function cargar(){
+    const input = document.querySelector("#fileInput");
+    imageController.loadImage(input.files[0]);
+    input.value = "";
 
+}
+
+let input = document.getElementById("fileInput");
+
+document.querySelector("#load").addEventListener("click", (e) => {
+    input.click();
+});
+
+input.addEventListener("change", (e) =>{
+    cargar();
 });

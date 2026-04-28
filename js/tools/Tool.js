@@ -1,6 +1,5 @@
 //Clase "abstracta" de herramientas para definir comportamiento similar.
 export class Tool{
-
     //constructor vacio
 
     startDraw(ctx, x, y){

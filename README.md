@@ -1,18 +1,18 @@
 # TPE 2
 ## Paint y Filtros de Imagen
 
-## Índice:
+## Indice:
 - [Descripción](#descripcion)
 - [Bibliografía](#bibliografia)
 - [Implementación](#implementacion)
-- [Uso](uso)
-- [Prueba](prueba)
+- [Uso](#uso)
+- [Prueba](#prueba)
 
-## Descripción:
+## Descripcion:
 Se ha propuesto implementar un paint que además permita la carga y modificacion de imagenes. 
 Para esto se ha trabajado con la etiqueta <canvas> de HTML5, y JavaScript para la modificacion de esta.
 
-## Bibliografía:
+## Bibliografia:
 Para la implementacion del proyecto se consultaron los siguientes artículos y páginas:
 - Kernel (Image processing): Uso y explicacion del funcionamiento de Kernels para modificar la imagen. https://en.wikipedia.org/wiki/Kernel_(image_processing)
 - Image Kernels: Explicación visual de diferentes Kernels. https://setosa.io/ev/image-kernels/
@@ -20,7 +20,7 @@ Para la implementacion del proyecto se consultaron los siguientes artículos y p
 - Colorfulness: Descripción de términos como saturación y chroma. https://en.wikipedia.org/wiki/Colorfulness
 - HSL and HSV: Explicación de los sistemas HSL y HSV y su relación con RGB. De este enlace se obtuvieron las formulas aplicadas en el filtro de saturación. https://en.wikipedia.org/wiki/HSL_and_HSV
 
-## Implementación:
+## Implementacion:
 Algunos detalles importantes de la implementación fueron los siguientes:
 Se trabajó utilizando clases y objetos para crear los diferentes filtros y herramientas. A su vez, se diseñaron dos controladores: uno para manejar los eventos de las herramientas (lápiz y goma) y otro para gestionar los eventos relacionados con las imágenes (carga y aplicación de filtros). El objetivo fue mantener separadas las responsabilidades y evitar mezclar funcionalidades dentro de `Main.js`.
 En cuanto a la implementación de filtros mediante kernels, se creó una clase general (`ConvolutionFilter.js`) cuyo constructor recibe el kernel a utilizar. También se creó un archivo `kernels.js` que almacena un diccionario con los kernels y sus filtros asociados.

@@ -42,6 +42,5 @@ A la imagen cargada se le pueden aplicar los siguientes filtros:
 Además, el usuario dispone de herramientas como lápiz y goma para dibujar sobre el canvas. En el caso del lápiz, se puede seleccionar el color y, para ambas herramientas, ajustar el grosor.
 
 ## Prueba:
+A la hora de cargar fotos, la imagen se adapta al tamaño del lienzo, por lo que pueden quedar un poco deformadas.
 Para testear la aplicación se utilizó la imagen `prueba.jpeg`, disponible en la carpeta `img`.
-
-

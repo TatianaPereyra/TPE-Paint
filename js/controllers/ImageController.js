@@ -44,8 +44,8 @@ export class ImageController{
         cleanCanvas();//limpio el canvas antes de dibujar la imagen (en caso de cambiarla)
 
         this.image.onload = () => {  //cuando carga, la dibujo y me guardo el arreglo de pixeles.
-            this.ctx.drawImage(this.image, 0, 0);
-            this.originalImageData = this.ctx.getImageData(0,0, this.image.width, this.image.height);
+            this.ctx.drawImage(this.image, 0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+            this.originalImageData = this.ctx.getImageData(0,0, this.ctx.canvas.width, this.ctx.canvas.height);
             this.setCopiaImageData();
         }
     }
